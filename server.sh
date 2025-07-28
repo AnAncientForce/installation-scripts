@@ -1,17 +1,10 @@
+source common.sh
+
 echo "Starting"
 
-if ! pacman -Qs yay &>/dev/null; then
-    sudo pacman -S --needed base-devel git
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
-    yay --version
-    cd ~
-else
-    echo "yay is already installed."
-fi
+install_yay
 
-read -p "Add cmd.sh alias? (y/n) " answer
+read -p "shell exports? (y/n) " answer
 if [ "$answer" = "y" ]; then
     echo 'alias cmd="~/mnt/a/scripts/cmd.sh"' >>~/.bashrc
     echo 'fastfetch' >>~/.bashrc
